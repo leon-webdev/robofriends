@@ -12,6 +12,7 @@ const mapStateToProps = (state) => {
         searchField: state.searchRobots.searchField,
         robots: state.requestRobots.robots,
         isPending: state.requestRobots.isPending,
+        error: state.requestRobots.error
     }
 }
 
@@ -30,13 +31,15 @@ class App extends Component {
 
     render() {
 
-    const { searchField, onSearchChange, robots, isPending } = this.props;
+    const { searchField, onSearchChange, robots, isPending, error } = this.props;
 
     const filteredRobots = robots.filter(robot => {
         return robot.name.toLowerCase().includes(searchField.toLowerCase());
       })
 
-    return isPending ?
+    return error ?    
+    <h1 className="tc">Error cargando datos de la API</h1> :
+        isPending ?
          <h1 className="tc">Loading</h1> :
          (
             <div className='tc'>

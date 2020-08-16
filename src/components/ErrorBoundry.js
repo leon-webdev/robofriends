@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-
 class ErrorBoundry extends Component {
     constructor(props) {
         super(props);
@@ -15,7 +14,7 @@ class ErrorBoundry extends Component {
 
     render() { 
         
-            if (this.state.hasError) {
+            if (this.props.hasError) {
                 return <h1> Hubo un error!. </h1>
             }
             return this.props.children
